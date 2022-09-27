@@ -2,15 +2,12 @@ terraform {
   backend "azurerm" {
     resource_group_name  = "gregory-craane"
     storage_account_name = "diagnosticc"
-    container_name       = "terraformgithubexample"
+    container_name       = "devops-deployments"
     key                  = "terraformgithubexample.tfstate"
   }
 }
 
 provider "azurerm" {
-  # The "feature" block is required for AzureRM provider 2.x.
-  # If you're using version 1.x, the "features" block is not allowed.
-  # version = "~>2.0"
   features {}
 }
 
@@ -18,7 +15,7 @@ data "azurerm_client_config" "current" {}
 
 #Create Resource Group
 resource "azurerm_resource_group" "gregory-craane" {
-  name     = "tamops"
+  name     = "gregory-craane"
   location = "westeurope"
 }
 
@@ -26,8 +23,8 @@ resource "azurerm_resource_group" "gregory-craane" {
 resource "azurerm_virtual_network" "vnet" {
   name                = "gregory-craane-vnet"
   address_space       = ["192.168.0.0/16"]
-  location            = "eastus2"
-  resource_group_name = azurerm_resource_group.tamops.name
+  location            = "westeurope"
+  resource_group_name = azurerm_resource_group.gregory-craane.name
 }
 
 # Create Subnet
