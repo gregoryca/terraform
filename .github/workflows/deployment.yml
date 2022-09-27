@@ -1,7 +1,7 @@
 ########################################################
 # This is a basic workflow to Deploy a Nextcloud stack #
 ########################################################
-name: Deploy Pihole
+name: Deploy Terraform main.tf
 
 on:
   push:
